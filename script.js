@@ -41,6 +41,11 @@ function createStars() {
 }
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    updateProgressBarAndTimer();
+    setInterval(updateProgressBarAndTimer, 1000); // Update every second
+});
+
 function updateProgressBarAndTimer() {
     const targetDate = new Date('2023-12-15T08:00:00');
     const now = new Date();
@@ -62,6 +67,7 @@ function updateProgressBarAndTimer() {
     document.getElementById('minutes').textContent = minutes;
     document.getElementById('seconds').textContent = seconds;
 }
+
 
 
 function twinkleStar(star) {

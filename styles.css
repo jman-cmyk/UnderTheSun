@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Star+Wars:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@media (max-width: 768px) {
+    #pdf-link {
+        margin-top: 20px; /* Less space on smaller screens */
+        width: 30%; /* Larger percentage for smaller screens */
+        max-width: 120px; /* Adjust maximum size for smaller screens */
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    #pdf-link {
+        margin-top: 10px; /* Even less space on very small screens */
+        width: 40%; /* Even larger percentage for very small screens */
+        max-width: 100px; /* Adjust maximum size for very small screens */
+    }
+}
+body {
+    /* Assuming you have a 'laser.png' image in the same directory as your CSS */
+    cursor: url('laser.png'), auto;
+}
+h1 {
+    font-family: 'YourFontName', sans-serif;
+    color: #f6e9d4; /* Replace with the color code you identified */
+    /* Other styling */
+}
+
+
+body {
+    background-color: #0f0001;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+#main-content h1 {
+    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+    font-size: 4em;
+    text-align: center;
+    margin: 0;
+    position: relative;
+    top: -50px;
+}
+
+#scrolling-text {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #0f0001; /* Solid black background */
+    padding: 10px;
+    z-index: 10; /* Ensures it stays above the stars */
+}
+
+marquee {
+    font-size: 1.2em;
+    color: #ffecb7;
+}
+
+.star {
+    position: absolute;
+    background-color: #ffecb7;
+    border-radius: 50%;
+}
+
+/* Additions for ground and sky illusion */
+#ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20vh;
+    background: linear-gradient(to top, #0A0A0A 0%, transparent 100%);
+    z-index: 10;
+}
+
+#shooting-star {
+    position: absolute;
+    background-color: white;
+    height: 1px;
+    z-index: 5;
+    display: none;
+}
+
+#album-cover {
+    width: 80%; /* Adjust based on desired size */
+    max-width: 500px; /* Prevents the image from being too large on big screens */
+    display: block;
+    margin: 20px auto 0; /* Adds space above the image and centers it horizontally */
+}
+
+
+#pdf-image {
+    width: 100%; /* Ensures the image fills the container */
+    display: block;
+}
+
+#pdf-link {
+    display: block;
+    margin: 40px auto 0; /* Increase the top margin to push it down */
+    width: 20%; /* Larger width as a percentage of the parent container */
+    max-width: 200px; /* Larger maximum size of the PDF icon */
+    /* Rest of your styles */
+}
+
+#pdf-icon {
+    width: 100%; /* Ensures the image scales with the container */
+    height: auto; /* Maintains the aspect ratio of the image */
+    /* Rest of your styles */
+}
+

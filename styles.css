@@ -23,13 +23,13 @@ body {
 }
 h1 {
     font-family: 'YourFontName', sans-serif;
-    color: #f6e9d4; /* Replace with the color code you identified */
+    color: #e4dcc3; /* Replace with the color code you identified */
     /* Other styling */
 }
 
 
 body {
-    background-color: #0f0001;
+    background-color: #20190e;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -70,6 +70,7 @@ marquee {
     position: absolute;
     background-color: #ffecb7;
     border-radius: 50%;
+    z-index: 1;
 }
 
 /* Additions for ground and sky illusion */
@@ -91,6 +92,8 @@ marquee {
 }
 
 #album-cover {
+    position: relative; /* Required for z-index to work */
+    z-index: 2; /* Higher than the stars */
     width: 80%; /* Adjust based on desired size */
     max-width: 500px; /* Prevents the image from being too large on big screens */
     display: block;
@@ -124,7 +127,7 @@ marquee {
 
 #progress-bar-container {
     width: 80%;
-    background-color: #ddd;
+    background-color: rgba(52, 35, 0, 1);
     border-radius: 5px;
     margin: 0 auto;
     height: 20px; /* Adjust as needed */
@@ -133,7 +136,7 @@ marquee {
 #progress-bar {
     height: 100%;
     width: 0%;
-    background-color: #4CAF50;
+    background-color: #fffde7;
     border-radius: 5px;
     transition: width 0.5s ease-in-out;
 }

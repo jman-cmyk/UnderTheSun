@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function createStars() {
     const starsContainer = document.getElementById('stars-container');
-    const starColors = ['#e15701', '#ffeabc', '#2b86bf', '#2db6d2']; // Array of colors
+    const starColors = ['#203a36', '#86b1ae', '#ef844c', '#be4b09'];  // Array of colors
 
     for (let i = 0; i < 200; i++) {
         let star = document.createElement('div');
@@ -23,7 +23,7 @@ function createStars() {
         let size = Math.random() * 3 * 1.5; 
 
         // Check if star is #ffeabc
-        if (starColors[colorIndex] === '#ffeabc') {
+        if (starColors[colorIndex] === '#86b1ae') {
             // Make diamond-shaped and twice as big
             star.style.width = `${size * 2}px`;
             star.style.height = `${size * 2}px`;
@@ -47,13 +47,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function updateProgressBarAndTimer() {
-    const targetDate = new Date('2023-12-15T08:00:00');
+    const startDate = new Date('2023-11-15T00:00:00');
+    const endDate = new Date('2023-12-15T08:00:00');
     const now = new Date();
-    const timeLeft = targetDate - now;
+    const totalDuration = endDate - startDate;
+    const timeLeft = endDate - now;
 
-    // Update progress bar
-    const totalDuration = targetDate - new Date('2023-01-01T00:00:00'); // Assuming the start date is January 1, 2023
-    const progress = ((totalDuration - timeLeft) / totalDuration) * 100;
+    // Calculate progress
+    let progress = 0;
+    if (now > startDate) {
+        progress = ((now - startDate) / totalDuration) * 100;
+        progress = Math.min(Math.max(progress, 0), 100); // Clamp between 0 and 100
+    }
     document.getElementById('progress-bar').style.width = `${progress}%`;
 
     // Update countdown timer

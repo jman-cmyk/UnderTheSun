@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Star+Wars:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
 
 @media (max-width: 768px) {
     #pdf-link {
@@ -142,6 +144,17 @@ marquee {
 }
 
 #countdown-timer {
+    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+    color: #fffde7; /* Color same as the progress bar */
     margin-top: 10px; /* Adjust as needed */
+    font-size: 1.2em;
+}
+
+#file-uploading-text {
+    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+    color: #fffde7; /* Color same as the progress bar */
+    text-align: center;
+    margin-bottom: 5px; /* Spacing above the progress bar */
+    /* Add more styles as needed */
     font-size: 1.2em;
 }

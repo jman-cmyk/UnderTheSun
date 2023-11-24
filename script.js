@@ -102,3 +102,16 @@ function createShootingStar() {
         document.body.removeChild(shootingStar);
     }, 1000);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    animateLoadingDots();
+    // ... other initialization code ...
+});
+
+function animateLoadingDots() {
+    let dotCount = 0;
+    setInterval(() => {
+        dotCount = (dotCount + 1) % 4; // Cycle from 0 to 3
+        document.getElementById('loading-dots').textContent = '.'.repeat(dotCount);
+    }, 500); // Adjust the timing as needed
+}

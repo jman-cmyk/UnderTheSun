@@ -60,16 +60,21 @@ body {
     white-space: nowrap;
     position: fixed;
     bottom: 0;
+    font-size: 2em; /* Makes the text twice as big */
+    padding: 20px; /* Increase the padding to enlarge the frame */
     left: 0; /* Make sure it starts from the far left */
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* As per your design */
     padding: 10px;
     box-sizing: border-box; /* Ensures padding is included in the width */
+    font-family: 'Questrial', sans-serif;
+    color: #ffecb7
+    
 }
 
 #scrolling-content {
     display: inline-block;
-    animation: scroll-text 20s linear infinite; /* Adjust speed as necessary */
+    animation: scroll-text 30s linear infinite; /* Adjust speed as necessary */
 }
 
 @keyframes scroll-text {

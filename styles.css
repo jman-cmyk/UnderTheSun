@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Star+Wars:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 
 @media (max-width: 768px) {
@@ -24,7 +25,7 @@ body {
     cursor: url('laser.png'), auto;
 }
 h1 {
-    font-family: 'YourFontName', sans-serif;
+    font-family: 'Questrial', sans-serif;
     color: #e4dcc3; /* Replace with the color code you identified */
     /* Other styling */
 }
@@ -34,7 +35,7 @@ body {
     background-color: #000020;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Questrial', sans-serif;
     color: white;
     display: flex;
     flex-direction: column;
@@ -46,7 +47,7 @@ body {
 }
 
 #main-content h1 {
-    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+    font-family: 'Questrial', sans-serif;
     font-size: 4em;
     text-align: center;
     margin: 0;
@@ -55,12 +56,29 @@ body {
 }
 
 #scrolling-text {
+    overflow: hidden;
+    white-space: nowrap;
     position: fixed;
     bottom: 0;
+    left: 0; /* Make sure it starts from the far left */
     width: 100%;
-    background-color: #0f0001; /* Solid black background */
+    background-color: rgba(0, 0, 0, 0.5); /* As per your design */
     padding: 10px;
-    z-index: 10; /* Ensures it stays above the stars */
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+#scrolling-content {
+    display: inline-block;
+    animation: scroll-text 20s linear infinite; /* Adjust speed as necessary */
+}
+
+@keyframes scroll-text {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 marquee {
@@ -144,17 +162,30 @@ marquee {
 }
 
 #countdown-timer {
-    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+    font-family: 'Questrial', sans-serif;
     color: #fffde7; /* Color same as the progress bar */
     margin-top: 10px; /* Adjust as needed */
     font-size: 1.2em;
 }
 
 #file-uploading-text {
-    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+    font-family: 'Questrial', sans-serif;
     color: #fffde7; /* Color same as the progress bar */
     text-align: center;
     margin-bottom: 5px; /* Spacing above the progress bar */
     /* Add more styles as needed */
     font-size: 1.2em;
+}
+
+#loading-dots {
+    display: inline-block;
+    width: 20px; /* Adjust the width as needed */
+    text-align: left;
+    /* You can add additional styling if needed */
+}
+
+.no-star-zone {
+    position: relative;
+    z-index: 2; /* Higher than the stars */
+    /* Define the size and position to cover the area of the elements */
 }

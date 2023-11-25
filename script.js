@@ -109,9 +109,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function animateLoadingDots() {
-    let dotCount = 0;
+    const dotStates = ["   ", ".  ", ".. ", "..."];
+    let currentIndex = 0;
     setInterval(() => {
-        dotCount = (dotCount + 1) % 4; // Cycle from 0 to 3
-        document.getElementById('loading-dots').textContent = '.'.repeat(dotCount);
+        document.getElementById('loading-dots').textContent = dotStates[currentIndex];
+        currentIndex = (currentIndex + 1) % dotStates.length;
     }, 500); // Adjust the timing as needed
 }

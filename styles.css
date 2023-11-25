@@ -96,6 +96,7 @@ marquee {
     background-color: #ffecb7;
     border-radius: 50%;
     z-index: 1;
+    transition: left 1s ease-out, top 1s ease-out; /* Smooth transition for 1 second */
 }
 
 /* Additions for ground and sky illusion */
@@ -164,6 +165,7 @@ marquee {
     background-color: #fffde7;
     border-radius: 5px;
     transition: width 0.5s ease-in-out;
+    transition: width 1s ease-out; /* Smooth transition for 1 second */
 }
 
 #countdown-timer {

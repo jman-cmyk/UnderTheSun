@@ -15,14 +15,14 @@ function createStars() {
         let colorIndex = Math.floor(Math.random() * starColors.length);
         star.style.backgroundColor = starColors[colorIndex];
 
-        // Set position
-        star.style.left = `${Math.random() * 100}vw`;
-        star.style.top = `${Math.random() * 100}vh`;
+        // Initial position (center of the screen)
+        star.style.left = '50%';
+        star.style.top = '50%';
 
         // Standard size (50% bigger than original)
-        let size = Math.random() * 3 * 1.5; 
+        let size = Math.random() * 3 * 1.5;
 
-        // Check if star is #ffeabc
+        // Check if star is #86b1ae
         if (starColors[colorIndex] === '#86b1ae') {
             // Make diamond-shaped and twice as big
             star.style.width = `${size * 2}px`;
@@ -37,8 +37,16 @@ function createStars() {
         starsContainer.appendChild(star);
         twinkleStar(star);
         driftStar(star);
+
+        // Immediately start moving star to final position
+        window.requestAnimationFrame(() => {
+            star.style.transition = 'left 1s ease-out, top 1s ease-out'; // Smooth and curved transition
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+        });
     }
 }
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -53,13 +61,21 @@ function updateProgressBarAndTimer() {
     const totalDuration = endDate - startDate;
     const timeLeft = endDate - now;
 
-    // Calculate progress
+    // Calculate current progress
     let progress = 0;
     if (now > startDate) {
         progress = ((now - startDate) / totalDuration) * 100;
         progress = Math.min(Math.max(progress, 0), 100); // Clamp between 0 and 100
     }
-    document.getElementById('progress-bar').style.width = `${progress}%`;
+
+    // Set initial progress bar width to 0%
+    const progressBar = document.getElementById('progress-bar');
+    progressBar.style.width = '0%';
+
+    // Use requestAnimationFrame for smooth transition to current progress
+    window.requestAnimationFrame(() => {
+        progressBar.style.width = `${progress}%`;
+    });
 
     // Update countdown timer
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
@@ -72,6 +88,7 @@ function updateProgressBarAndTimer() {
     document.getElementById('minutes').textContent = minutes;
     document.getElementById('seconds').textContent = seconds;
 }
+
 
 
 

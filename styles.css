@@ -32,7 +32,7 @@ h1 {
 
 
 body {
-    background-color: #000020;
+    background-color: #020b12;
     margin: 0;
     padding: 0;
     font-family: 'Questrial', sans-serif;
@@ -68,7 +68,7 @@ body {
     padding: 10px;
     box-sizing: border-box; /* Ensures padding is included in the width */
     font-family: 'Questrial', sans-serif;
-    color: #ffecb7
+    color: #a9bfd6
     
 }
 
@@ -88,12 +88,12 @@ body {
 
 marquee {
     font-size: 1.2em;
-    color: #ffecb7;
+    color: #a9bfd6;
 }
 
 .star {
     position: absolute;
-    background-color: #ffecb7;
+    background-color: #a9bfd6;
     border-radius: 50%;
     z-index: 1;
     transition: left 1s ease-out, top 1s ease-out; /* Smooth transition for 1 second */
@@ -162,7 +162,7 @@ marquee {
 #progress-bar {
     height: 100%;
     width: 0%;
-    background-color: #fffde7;
+    background-color: #a9bfd6;
     border-radius: 5px;
     transition: width 0.5s ease-in-out;
     transition: width 1s ease-out; /* Smooth transition for 1 second */
@@ -170,14 +170,14 @@ marquee {
 
 #countdown-timer {
     font-family: 'Questrial', sans-serif;
-    color: #fffde7; /* Color same as the progress bar */
+    color: #a9bfd6; /* Color same as the progress bar */
     margin-top: 10px; /* Adjust as needed */
     font-size: 1.2em;
 }
 
 #file-uploading-text {
     font-family: 'Questrial', sans-serif;
-    color: #fffde7; /* Color same as the progress bar */
+    color: #a9bfd6; /* Color same as the progress bar */
     text-align: center;
     margin-bottom: 5px; /* Spacing above the progress bar */
     /* Add more styles as needed */

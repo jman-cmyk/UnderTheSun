@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function createStars() {
     const starsContainer = document.getElementById('stars-container');
-    const starColors = ['#203a36', '#86b1ae', '#ef844c', '#be4b09'];  // Array of colors
+    const starColors = ['#9d8ea5', '#a0bcd4', '#6b4b60', '#a4bbd3'];  // Array of updated colors
 
     for (let i = 0; i < 200; i++) {
         let star = document.createElement('div');
@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function updateProgressBarAndTimer() {
-    const startDate = new Date('2023-11-15T00:00:00');
-    const endDate = new Date('2023-12-15T08:00:00');
+    const startDate = new Date('2024-01-15T00:00:00');
+    const endDate = new Date('2024-02-29T21:00:00');
     const now = new Date();
     const totalDuration = endDate - startDate;
     const timeLeft = endDate - now;

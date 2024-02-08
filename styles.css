@@ -196,3 +196,20 @@ marquee {
     z-index: 2; /* Higher than the stars */
     /* Define the size and position to cover the area of the elements */
 }
+.open-album-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a9bfd6; /* Match your progress bar color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Questrial', sans-serif;
+    gap: 10px; /* Space between icon and text */
+    margin-bottom: 20px; /* Adds some space below the button, adjust as needed */
+}
+
+.open-album-button svg {
+    fill: white; /* SVG color */
+}

@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function updateProgressBarAndTimer() {
     const startDate = new Date('2024-01-15T00:00:00');
-    const endDate = new Date('2024-02-09T15:35:00');
+    const endDate = new Date('2024-02-08T15:37:00');
     const now = new Date();
     const totalDuration = endDate - startDate;
     const timeLeft = endDate - now;

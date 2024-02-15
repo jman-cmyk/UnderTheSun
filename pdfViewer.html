@@ -11,7 +11,13 @@
             <div id="date-text">December 19, 2023</div>
         </div>
         <div id="release-text">For Immediate Release</div>
-        <iframe src="Gravity.pdf#toolbar=0" width="100%" height="90%"></iframe>
+        <!-- PDF Viewer for Desktop -->
+        <iframe id="pdf-viewer" src="Gravity.pdf#toolbar=0" width="100%" height="90%"></iframe>
+        <!-- Download Button for Mobile -->
+        <div id="mobile-download" style="display:none;">
+            <a href="Gravity.pdf" download="Gravity.pdf" class="download-button">Download PDF</a>
+        </div>
     </div>
+    <script src="pdfViewerScript.js"></script>
 </body>
 </html>

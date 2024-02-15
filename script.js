@@ -162,18 +162,3 @@ function animateLoadingDots() {
         currentIndex = (currentIndex + 1) % dotStates.length;
     }, 500); // Adjust the timing as needed
 }
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    adjustViewport();
-  });
-  
-  function adjustViewport() {
-    var viewport = document.getElementById('viewport');
-    if (window.innerWidth <= 768) { // Assuming 768px is your breakpoint for mobile devices
-      viewport.setAttribute('content', 'width=device-width, initial-scale=1.6, maximum-scale=1.6, user-scalable=0');
-    } else {
-      viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
-    }
-  }
-  

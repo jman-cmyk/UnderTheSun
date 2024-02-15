@@ -121,7 +121,7 @@ marquee {
     position: relative; /* Required for z-index to work */
     z-index: 2; /* Higher than the stars */
     width: 80%; /* Adjust based on desired size */
-    max-width: 500px; /* Prevents the image from being too large on big screens */
+    max-width: 800px; /* Prevents the image from being too large on big screens */
     display: block;
     margin: 20px auto 0; /* Adds space above the image and centers it horizontally */
 }

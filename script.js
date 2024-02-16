@@ -175,10 +175,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var pdfLink = document.getElementById('pdf-link');
 
     if (isMobile) {
-        // Change the href to point to Gravity.pdf and add download attribute for mobile users
-        pdfLink.setAttribute('href', 'Gravity.pdf');
-        pdfLink.setAttribute('download', 'Gravity.pdf');
-        pdfLink.classList.add('download-button'); // Assuming you want to style the link as a button for mobile users
+        // Change the href to the full URL for mobile users
+        pdfLink.setAttribute('href', 'https://underthesunproject.com/Gravity.pdf');
+        // Optionally, use the download attribute if you want the file to be downloaded rather than viewed
+        // pdfLink.setAttribute('download', 'Gravity.pdf');
     }
-    // Desktop users will navigate to pdfViewer.html as per the initial HTML setup
+    // No need to add the download attribute for mobile if you want the browser to decide based on content-type
 });

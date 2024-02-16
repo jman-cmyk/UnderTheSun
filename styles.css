@@ -269,3 +269,4 @@ marquee {
     animation-duration: 1s; /* Match this duration with the JavaScript timeout */
     animation-fill-mode: forwards; /* Keeps the element in the final state of the animation */
 }
+

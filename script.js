@@ -122,16 +122,34 @@ function displayOpenAlbumButton() {
 
 
 function twinkleStar(star) {
+    let isFadingOut = true;
+
     setInterval(() => {
-        star.style.opacity = Math.random();
-    }, Math.random() * 2000 + 500);
+        if (isFadingOut) {
+            // Fade the star out to a lower opacity
+            star.style.opacity = 0.4; // Adjust as needed for desired effect
+            isFadingOut = false;
+        } else {
+            // Fade the star back in to higher opacity
+            star.style.opacity = 0.8; // Adjust as needed for desired effect
+            isFadingOut = true;
+        }
+    }, Math.random() * 2000 + 500); // Continue using a random interval for a more natural effect
 }
 
+
 function driftStar(star) {
-    setInterval(() => {
-        star.style.left = `calc(${star.style.left} + 1%)`;
-    }, 120000); // 2 minutes
+    function move() {
+        const currentLeft = parseFloat(star.style.left || '0'); // Get current left as a float
+        const newLeft = currentLeft + 0.001; // Increment by 0.1%, adjust as needed for speed
+        star.style.left = `${newLeft}%`; // Update the left property
+
+        requestAnimationFrame(move); // Continue the animation
+    }
+
+    requestAnimationFrame(move); // Start the animation
 }
+
 
 function createShootingStar() {
     const shootingStar = document.createElement('div');

@@ -96,11 +96,8 @@ marquee {
     background-color: #a9bfd6;
     border-radius: 50%;
     z-index: 1;
-    opacity: 0.8; /* Starting opacity */
-    transition: opacity 0.5s ease-in-out, left 1s ease-out, top 1s ease-out;
+    transition: left 1s ease-out, top 1s ease-out; /* Smooth transition for 1 second */
 }
-
-
 
 /* Additions for ground and sky illusion */
 #ground {

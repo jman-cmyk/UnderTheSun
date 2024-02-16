@@ -162,3 +162,23 @@ function animateLoadingDots() {
         currentIndex = (currentIndex + 1) % dotStates.length;
     }, 500); // Adjust the timing as needed
 }
+
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    // Mobile device detected
+    document.getElementById('album-cover').style.width = "calc(min(40vh, 80vw))";
+    document.getElementById('album-cover').style.height = "calc(min(40vh, 80vw))";
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    var pdfLink = document.getElementById('pdf-link');
+
+    if (isMobile) {
+        // Change the href to point to Gravity.pdf and add download attribute for mobile users
+        pdfLink.setAttribute('href', 'Gravity.pdf');
+        pdfLink.setAttribute('download', 'Gravity.pdf');
+        pdfLink.classList.add('download-button'); // Assuming you want to style the link as a button for mobile users
+    }
+    // Desktop users will navigate to pdfViewer.html as per the initial HTML setup
+});

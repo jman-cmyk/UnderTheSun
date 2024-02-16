@@ -117,19 +117,58 @@ marquee {
     display: none;
 }
 
+/* Base styles for the album cover - optimized for mobile devices */
 #album-cover {
-    position: relative; /* Required for z-index to work */
-    z-index: 2; /* Higher than the stars */
-    width: 80%; /* Adjust based on desired size */
-    max-width: 800px; /* Prevents the image from being too large on big screens */
+    position: relative;
+    z-index: 2;
     display: block;
-    margin: 20px auto 0; /* Adds space above the image and centers it horizontally */
+    margin: 20px auto 0;
+    object-fit: cover;
+    /* Base size for mobile devices */
+    width: calc(min(50vh, 100vw)); 
+    height: calc(min(50vh, 100vw)); 
+    max-width: 800px;
+    max-height: 800px;
 }
 
+/* Adjustments for tablets (devices with width between 768px and 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #album-cover {
+        /* Smaller size for tablet screens */
+        width: calc(min(45vh, 90vw)); 
+        height: calc(min(45vh, 90vw)); 
+    }
+}
 
+/* Adjustments for computers (devices with width greater than 1024px) */
+@media (min-width: 1025px) {
+    #album-cover {
+        /* Even smaller size for computer screens */
+        width: calc(min(40vh, 60vw)); 
+        height: calc(min(40vh, 60vw)); 
+    }
+}
+
+/* Base styles for mobile devices */
 #pdf-image {
-    width: 100%; /* Ensures the image fills the container */
+    width: 150%; /* Full width on mobile devices */
     display: block;
+}
+
+/* Adjustments for tablets (devices with width between 768px and 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #pdf-image {
+        width: 100%; /* Reduce width on tablets */
+        margin: 0 auto; /* Center the image */
+    }
+}
+
+/* Adjustments for computers (devices with width greater than 1024px) */
+@media (min-width: 1025px) {
+    #pdf-image {
+        width: 80%; /* Further reduce width on computers */
+        margin: 0 auto; /* Center the image */
+    }
 }
 
 #pdf-link {

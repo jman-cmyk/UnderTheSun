@@ -182,3 +182,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // No need to add the download attribute for mobile if you want the browser to decide based on content-type
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const albumCover = document.getElementById('album-cover');
+
+    albumCover.addEventListener('click', function() {
+        // Apply an animation class or directly manipulate styles for animation
+        this.classList.add('animate-cover');
+        
+        // Wait for the animation to finish before redirecting
+        // Assuming the animation duration is 1 second (1000 milliseconds)
+        setTimeout(function() {
+            window.location.href = 'https://distrokid.com/hyperfollow/isaiahschmidt/under-the-sun-3';
+        }, 1000); // Adjust the timeout duration based on your actual animation duration
+    });
+});
+
+
+function confirmPdfDownload() {
+    const confirmDownload = confirm("This file contains frequent strong language and themes of suicide. Do you want to continue?");
+    return confirmDownload;
+}

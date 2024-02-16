@@ -252,3 +252,20 @@ marquee {
 .open-album-button svg {
     fill: white; /* SVG color */
 }
+
+/* Define the keyframes for the fade-out animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Apply the animation to the .animate-cover class */
+.animate-cover {
+    animation-name: fadeOut;
+    animation-duration: 1s; /* Match this duration with the JavaScript timeout */
+    animation-fill-mode: forwards; /* Keeps the element in the final state of the animation */
+}

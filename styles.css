@@ -276,13 +276,13 @@ marquee {
     animation-fill-mode: forwards; /* Keeps the element in the final state of the animation */
 }
 
-#main-content {
-    transition: transform 0.3s ease; /* Smooth transition for any movement */
+#pdf-icon {
+    transform: scale(1.5); /* Increase size by 30% */
+    transition: transform 0.3s ease; /* Smooth transition for any state changes */
 }
 
-/* Mobile devices */
-@media (max-width: 768px) {
+@media (max-width: 950px) { /* Adjust this based on your target mobile device widths */
     #main-content {
-        transform: translateY(-10%); /* Shift everything up by 10% */
+        margin-top: -30%; /* Shifts content up by 10% of its current margin */
     }
 }

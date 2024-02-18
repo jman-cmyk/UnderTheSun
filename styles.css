@@ -276,3 +276,13 @@ marquee {
     animation-fill-mode: forwards; /* Keeps the element in the final state of the animation */
 }
 
+#main-content {
+    transition: transform 0.3s ease; /* Smooth transition for any movement */
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+    #main-content {
+        transform: translateY(-10%); /* Shift everything up by 10% */
+    }
+}

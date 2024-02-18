@@ -283,6 +283,6 @@ marquee {
 
 @media (max-width: 950px) { /* Adjust this based on your target mobile device widths */
     #main-content {
-        margin-top: -30%; /* Shifts content up by 10% of its current margin */
+        margin-top: -12%; /* Shifts content up by 10% of its current margin */
     }
 }

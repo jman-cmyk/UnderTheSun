@@ -186,59 +186,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const albumCover = document.getElementById('album-cover');
-    let holdTimeout;
-    let wasHolding = false; // Track if it was a hold action
+    let holdTimeout = null;
+    let interactionStartTime;
 
-    function onPressStart(e) {
-        e.preventDefault(); // Prevent default browser handling (e.g., image drag)
+    function startInteraction(e) {
+        e.preventDefault(); // Prevent default action, especially on touch devices
+        interactionStartTime = Date.now(); // Record the time when the interaction starts
+
         albumCover.style.transform = 'scale(1.1)';
-        albumCover.style.transition = 'transform 0.2s ease, opacity 0.5s ease';
-
-        // Set a flag to false initially
-        wasHolding = false;
-
-        // Set a timeout to determine if it's a hold
-        holdTimeout = setTimeout(function() {
-            albumCover.dataset.isHolding = 'true';
-            wasHolding = true; // Indicate that this was a hold action
-        }, 200); // Short duration to differentiate between tap and hold
+        albumCover.dataset.isHolding = 'false'; // Reset holding state
     }
 
-    function onPressEnd(e) {
-        if (albumCover.dataset.isHolding === 'true') {
-            // It was a hold, reset without redirecting
-            albumCover.style.transform = 'scale(1)';
-            albumCover.style.opacity = '1';
-            albumCover.dataset.isHolding = 'false';
-        } else if (!wasHolding) {
-            // It was a tap, not a hold
-            clearTimeout(holdTimeout);
+    function endInteraction(e) {
+        e.preventDefault(); // Prevent default action, especially on touch devices
+        const interactionEndTime = Date.now();
+        const interactionDuration = interactionEndTime - interactionStartTime;
+
+        if (interactionDuration < 500) { // Consider it a tap if under 500ms
             albumCover.style.opacity = '0';
             setTimeout(function() {
                 window.location.href = 'https://distrokid.com/hyperfollow/isaiahschmidt/under-the-sun-3';
-            }, 500); // Wait for the fade to complete
+            }, 300); // Adjust timing if needed for the fade-out effect
+        } else {
+            // It was a hold, reset styles
+            albumCover.style.transform = 'scale(1)';
+            albumCover.style.opacity = '1';
         }
-        // Reset the wasHolding flag
-        wasHolding = false;
+
+        clearTimeout(holdTimeout);
     }
 
-    function onLeave() {
-        clearTimeout(holdTimeout);
+    function cancelInteraction() {
         albumCover.style.transform = 'scale(1)';
         albumCover.style.opacity = '1';
-        albumCover.dataset.isHolding = 'false';
-        wasHolding = false; // Ensure reset even if the mouse leaves the album cover
+        clearTimeout(holdTimeout);
     }
 
-    // Attach events to album cover
-    albumCover.addEventListener('mousedown', onPressStart);
-    albumCover.addEventListener('mouseup', onPressEnd);
-    albumCover.addEventListener('mouseleave', onLeave);
+    // Desktop Events
+    albumCover.addEventListener('mousedown', startInteraction);
+    albumCover.addEventListener('mouseup', endInteraction);
+    albumCover.addEventListener('mouseleave', cancelInteraction);
 
-    // For touch devices, attach the start and end touch events to the album cover
-    albumCover.addEventListener('touchstart', onPressStart);
-    albumCover.addEventListener('touchend', onPressEnd);
+    // Touch Events
+    albumCover.addEventListener('touchstart', startInteraction);
+    albumCover.addEventListener('touchend', endInteraction);
 });
+
 
 
 

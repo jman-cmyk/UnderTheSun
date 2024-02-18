@@ -186,51 +186,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const albumCover = document.getElementById('album-cover');
-    let holdTimeout = null;
     let interactionStartTime;
+    let isHold = false;
 
-    function startInteraction(e) {
-        e.preventDefault(); // Prevent default action, especially on touch devices
-        interactionStartTime = Date.now(); // Record the time when the interaction starts
-
+    function handleInteractionStart(e) {
+        e.preventDefault(); // Optionally prevent default to avoid image drag issues
+        interactionStartTime = Date.now();
         albumCover.style.transform = 'scale(1.1)';
-        albumCover.dataset.isHolding = 'false'; // Reset holding state
+        isHold = false; // Reset hold detection
     }
 
-    function endInteraction(e) {
-        e.preventDefault(); // Prevent default action, especially on touch devices
+    function handleInteractionEnd(e) {
         const interactionEndTime = Date.now();
         const interactionDuration = interactionEndTime - interactionStartTime;
 
-        if (interactionDuration < 500) { // Consider it a tap if under 500ms
+        if (interactionDuration < 200) { // Adjust threshold for tap vs hold
+            // This was a tap
             albumCover.style.opacity = '0';
-            setTimeout(function() {
+            setTimeout(() => {
                 window.location.href = 'https://distrokid.com/hyperfollow/isaiahschmidt/under-the-sun-3';
-            }, 300); // Adjust timing if needed for the fade-out effect
+            }, 300); // Delay for fade effect
         } else {
-            // It was a hold, reset styles
+            // This was a hold
+            isHold = true;
             albumCover.style.transform = 'scale(1)';
             albumCover.style.opacity = '1';
         }
-
-        clearTimeout(holdTimeout);
     }
 
-    function cancelInteraction() {
-        albumCover.style.transform = 'scale(1)';
-        albumCover.style.opacity = '1';
-        clearTimeout(holdTimeout);
+    function handleInteractionCancel() {
+        if (!isHold) {
+            albumCover.style.transform = 'scale(1)';
+            albumCover.style.opacity = '1';
+        }
     }
 
-    // Desktop Events
-    albumCover.addEventListener('mousedown', startInteraction);
-    albumCover.addEventListener('mouseup', endInteraction);
-    albumCover.addEventListener('mouseleave', cancelInteraction);
+    // For desktop
+    albumCover.addEventListener('mousedown', handleInteractionStart);
+    albumCover.addEventListener('mouseup', handleInteractionEnd);
+    albumCover.addEventListener('mouseleave', handleInteractionCancel);
 
-    // Touch Events
-    albumCover.addEventListener('touchstart', startInteraction);
-    albumCover.addEventListener('touchend', endInteraction);
+    // For mobile
+    albumCover.addEventListener('touchstart', handleInteractionStart, { passive: false });
+    albumCover.addEventListener('touchend', handleInteractionEnd);
 });
+
 
 
 

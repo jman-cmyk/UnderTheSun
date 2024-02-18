@@ -129,8 +129,8 @@ marquee {
     height: calc(min(50vh, 100vw)); 
     max-width: 800px;
     max-height: 800px;
-    transition: transform 0.2s ease, opacity 0.2s ease; /* Smooth transitions for scaling and opacity */
-    cursor: pointer; /* Indicates an interactive element */
+    transition: transform 0.2s ease, opacity 0.3s ease; /* Smooth transitions */
+
 }
 
 #album-cover.animate-cover {

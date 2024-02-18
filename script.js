@@ -186,47 +186,71 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const albumCover = document.getElementById('album-cover');
+    const albumCoverLink = document.getElementById('album-cover-link');
     let interactionStartTime;
     let isHold = false;
 
+    function isTouchDevice() {
+        return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+    }
+
     function handleInteractionStart(e) {
-        e.preventDefault(); // Optionally prevent default to avoid image drag issues
+        // Prevent default action for non-touch devices to manage custom behavior
+        if (!isTouchDevice()) {
+            e.preventDefault();
+        }
+
         interactionStartTime = Date.now();
         albumCover.style.transform = 'scale(1.1)';
         isHold = false; // Reset hold detection
     }
 
     function handleInteractionEnd(e) {
+        if (!isTouchDevice()) {
+            e.preventDefault(); // Prevent default action for non-touch devices
+        }
+
         const interactionEndTime = Date.now();
         const interactionDuration = interactionEndTime - interactionStartTime;
 
-        if (interactionDuration < 200) { // Adjust threshold for tap vs hold
-            // This was a tap
+        if (!isHold && interactionDuration < 200) { // Adjust threshold for tap vs hold
             albumCover.style.opacity = '0';
             setTimeout(() => {
-                window.location.href = 'https://distrokid.com/hyperfollow/isaiahschmidt/under-the-sun-3';
+                // Navigate only if it was a tap and on non-touch devices
+                if (!isTouchDevice()) {
+                    window.location.href = 'https://distrokid.com/hyperfollow/isaiahschmidt/under-the-sun-3';
+                }
             }, 300); // Delay for fade effect
         } else {
-            // This was a hold
-            isHold = true;
+            // Reset styles if it was a hold or if on a touch device
             albumCover.style.transform = 'scale(1)';
             albumCover.style.opacity = '1';
         }
     }
 
     function handleInteractionCancel() {
-        if (!isHold) {
-            albumCover.style.transform = 'scale(1)';
-            albumCover.style.opacity = '1';
-        }
+        albumCover.style.transform = 'scale(1)';
+        albumCover.style.opacity = '1';
+        isHold = true; // Mark as hold to prevent navigation on leave
     }
 
-    // For desktop
-    albumCover.addEventListener('mousedown', handleInteractionStart);
-    albumCover.addEventListener('mouseup', handleInteractionEnd);
-    albumCover.addEventListener('mouseleave', handleInteractionCancel);
+    // Adapt interactions based on device capability
+    if (isTouchDevice()) {
+        // Directly use the anchor link for navigation on touch devices
+        albumCoverLink.removeAttribute('onclick'); // Ensure no JavaScript click handler interferes
+    } else {
+        // For desktop: custom behavior
+        albumCover.addEventListener('mousedown', handleInteractionStart);
+        albumCover.addEventListener('mouseup', handleInteractionEnd);
+        albumCover.addEventListener('mouseleave', handleInteractionCancel);
 
-    // For mobile
+        // Prevent default link behavior on desktop to allow custom JavaScript functionality
+        albumCoverLink.addEventListener('click', function(e) {
+            e.preventDefault();
+        });
+    }
+
+    // For mobile, relying on touch events for start/end could still provide feedback if desired
     albumCover.addEventListener('touchstart', handleInteractionStart, { passive: false });
     albumCover.addEventListener('touchend', handleInteractionEnd);
 });

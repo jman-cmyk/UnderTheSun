@@ -186,18 +186,65 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const albumCover = document.getElementById('album-cover');
+    let holdTimeout;
+    let wasHolding = false; // Track if it was a hold action
 
-    albumCover.addEventListener('click', function() {
-        // Apply an animation class or directly manipulate styles for animation
-        this.classList.add('animate-cover');
-        
-        // Wait for the animation to finish before redirecting
-        // Assuming the animation duration is 1 second (1000 milliseconds)
-        setTimeout(function() {
-            window.location.href = 'https://distrokid.com/hyperfollow/isaiahschmidt/under-the-sun-3';
-        }, 1000); // Adjust the timeout duration based on your actual animation duration
-    });
+    function onPressStart(e) {
+        e.preventDefault(); // Prevent default browser handling (e.g., image drag)
+        albumCover.style.transform = 'scale(1.1)';
+        albumCover.style.transition = 'transform 0.2s ease, opacity 0.5s ease';
+
+        // Set a flag to false initially
+        wasHolding = false;
+
+        // Set a timeout to determine if it's a hold
+        holdTimeout = setTimeout(function() {
+            albumCover.dataset.isHolding = 'true';
+            wasHolding = true; // Indicate that this was a hold action
+        }, 200); // Short duration to differentiate between tap and hold
+    }
+
+    function onPressEnd(e) {
+        if (albumCover.dataset.isHolding === 'true') {
+            // It was a hold, reset without redirecting
+            albumCover.style.transform = 'scale(1)';
+            albumCover.style.opacity = '1';
+            albumCover.dataset.isHolding = 'false';
+        } else if (!wasHolding) {
+            // It was a tap, not a hold
+            clearTimeout(holdTimeout);
+            albumCover.style.opacity = '0';
+            setTimeout(function() {
+                window.location.href = 'https://distrokid.com/hyperfollow/isaiahschmidt/under-the-sun-3';
+            }, 500); // Wait for the fade to complete
+        }
+        // Reset the wasHolding flag
+        wasHolding = false;
+    }
+
+    function onLeave() {
+        clearTimeout(holdTimeout);
+        albumCover.style.transform = 'scale(1)';
+        albumCover.style.opacity = '1';
+        albumCover.dataset.isHolding = 'false';
+        wasHolding = false; // Ensure reset even if the mouse leaves the album cover
+    }
+
+    // Attach events to album cover
+    albumCover.addEventListener('mousedown', onPressStart);
+    albumCover.addEventListener('mouseup', onPressEnd);
+    albumCover.addEventListener('mouseleave', onLeave);
+
+    // For touch devices, attach the start and end touch events to the album cover
+    albumCover.addEventListener('touchstart', onPressStart);
+    albumCover.addEventListener('touchend', onPressEnd);
 });
+
+
+
+
+
+
 
 
 function confirmPdfDownload() {
